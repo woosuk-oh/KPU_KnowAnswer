@@ -6,7 +6,7 @@ Graduation Work GITHUB
 Member
 * Seo junwon (12)
 * Kwon Hyukjun (12)
-* Oh useok (12)
+* Oh Woosuk (12)
 
 
 Start date

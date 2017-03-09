@@ -14,5 +14,9 @@ Start date
 
 Report
 * Date of Proposals & Plan - 16.12.22
-* The Proposal release date - 16.12.26
+* The Proposal date - 16.12.26
+* The Design date - 17.02.23
+
+Processing
+* brench 1 2 3 4 not use.
 

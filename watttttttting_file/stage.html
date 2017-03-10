@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8;charset=utf-8" />
+<title>Know Answer</title>
+    <!-- 제이쿼리 UI -->
+     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+ <!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<style type="text/css">
+body {
+	margin: 0;
+	padding: 0;
+	font: normal 10px Verdana, Arial, Helvetica, sans-serif;
+	position: relative;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-align: center;
+}
+h1 {
+	text-align: center;
+	font-weight: normal;
+	font-size: 2.5em;
+}
+h1 small {
+	display: block;
+	font-size: 0.7em;
+	color: #999;
+}
+img {border: none;}
+ul.gallery {
+	width: 500px;
+	list-style: none;
+	margin: 0 auto; padding: 0;
+}
+ul.gallery li {
+	float: left;
+	margin: 10px;
+	padding: 0;
+	text-align: center;
+	border: 1px solid #ccc;
+	-moz-border-radius: 3px; /*--CSS3 Rounded Corners--*/
+	-khtml-border-radius: 3px; /*--CSS3 Rounded Corners--*/
+	-webkit-border-radius: 3px; /*--CSS3 Rounded Corners--*/
+	display: inline; /*--Gimp Fix aka IE6 Fix--*/
+	font-family: "맑은 고딕";
+	font-size: 9px;
+}
+ul.gallery li a.thumb {
+	width: 204px;
+	height: 182px;
+	padding: 5px;
+	border-bottom: 1px solid #ccc;
+	cursor: pointer;
+}
+ul.gallery li span { /*--Used to crop image--*/
+	width: 204px;
+	height: 182px;
+	overflow: hidden;
+	display: block;
+}
+ul.gallery li a.thumb:hover {
+	background: #333;
+}
+ul.gallery li h2 {
+	font-size: 1em;
+	font-weight: normal;
+	text-transform: uppercase;
+	margin: 0; padding: 10px;
+	background: #f0f0f0;
+	border-top: 1px solid #fff; /*--Subtle bevel effect--*/
+}
+ul.gallery li a {
+	text-decoration: none;
+	color: #000;
+	display: block;
+	font-weight: bold;
+	font-size: 2em;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    left: 105%;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+    
+#footer {
+	display: block;
+}
+.title {
+	font-family: "맑은 고딕";
+	font-size: 36px;
+	font-weight: bold;
+}
+.title_f {
+	color: #09F;
+	font-family: "맑은 고딕";
+	font-size: 36px;
+	font-weight: bold;
+}
+</style>
+<script type="text/javascript" src="https://firebasestorage.googleapis.com/v0/b/m2mproject-d7ae6.appspot.com/o/jquery.js?alt=media&token=253ac7f5-16e4-4cb0-9623-c2b8ea6dcb3e"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+	$("ul.gallery li").hover(function() { //On hover...
+		
+		var thumbOver = $(this).find("img").attr("src"); //Get image url and assign it to 'thumbOver'
+		
+		//Set a background image(thumbOver) on the &lt;a&gt; tag 
+		$(this).find("a.thumb").css({'background' : 'url(' + thumbOver + ') no-repeat center bottom'});
+		//Fade the image to 0 
+		$(this).find("span").stop().fadeTo('normal', 0 , function() {
+			$(this).hide() //Hide the image after fade
+		}); 
+	} , function() { //on hover out...
+		//Fade the image to 1 
+		$(this).find("span").stop().fadeTo('normal', 1).show();
+	});
+
+    
+});
+
+</script>
+</head>
+
+<body>
+<br><br><br>
+<span class="title_f"><img src="https://firebasestorage.googleapis.com/v0/b/m2mproject-d7ae6.appspot.com/o/ti.gif?alt=media&token=9762bbb7-4927-4c21-8bd8-ad45fad7c4d2" width="96" height="63">쏙쏙</span><span class="title"> 놀이 골라보기<img src="https://firebasestorage.googleapis.com/v0/b/m2mproject-d7ae6.appspot.com/o/ti.gif?alt=media&token=9762bbb7-4927-4c21-8bd8-ad45fad7c4d2" width="96" height="63"></span>
+<br><br><br><br>
+<ul class="gallery">
+	<li>
+		<a href="#" class="thumb"><span><img src="https://firebasestorage.googleapis.com/v0/b/m2mproject-d7ae6.appspot.com/o/image.gif?alt=media&token=defe3168-f0e7-498d-a559-ce84edb281e6" alt="" /></span></a>
+		<h2><button type="button" class="btn btn-info">LEVEL 0</button></h2>
+		<h2> <a href="#">나는 처음이예요!</a> </h2>
+        <h2> <button type="button" class="btn btn-default">들어가기</button> </h2>
+  </li>
+	<li>
+		<a href="#" class="thumb"><span><img src="https://firebasestorage.googleapis.com/v0/b/m2mproject-d7ae6.appspot.com/o/image.gif?alt=media&token=defe3168-f0e7-498d-a559-ce84edb281e6" alt="" /></span></a>
+		<h2><button type="button" class="btn btn-info">LEVEL 1</button></h2>
+		<h2><a href="#">누구나 미로찾기!</a></h2>
+        <h2><button type="button" class="btn btn-default">들어가기</button></h2>
+	</li>
+	<li>
+		<a href="#" class="thumb"><span><img src="https://firebasestorage.googleapis.com/v0/b/m2mproject-d7ae6.appspot.com/o/image.gif?alt=media&token=defe3168-f0e7-498d-a559-ce84edb281e6" alt="" /></span></a>
+		<h2><button type="button" class="btn btn-info">LEVEL 2</button></h2>
+		<h2><a href="#">미로찾기 할 수 있다!</a></h2>
+        <h2><button type="button" class="btn btn-default">들어가기</button></h2>
+	</li>
+	<li>
+		<a href="#" class="thumb"><span><img src="https://firebasestorage.googleapis.com/v0/b/m2mproject-d7ae6.appspot.com/o/image.gif?alt=media&token=defe3168-f0e7-498d-a559-ce84edb281e6" alt="" /></span></a>
+		<h2><button type="button" class="btn btn-info">LEVEL 3</button></h2>
+		<h2><a href="#">나는 똑똑해요!</a></h2>
+        <h2><button type="button" class="btn btn-default">들어가기</button></h2>
+	</li>
+</ul>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    
+<p>
+  2017 © KNOW ANSWER<br>
+</p>
+
+
+    </body>
+</html>
+

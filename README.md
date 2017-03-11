@@ -20,3 +20,12 @@ Report
 Processing
 * brench 1 2 3 4 not use.
 
+Starting
+* Client
+1. npm install
+2. npm start 
+
+* Server
+1. npm install
+2. npm build (ts complie)
+3. npm start

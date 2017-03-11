@@ -14,6 +14,7 @@ const Games = [
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  title = "알고리즘 게임을 해볼까?";
   items: FirebaseListObservable<any[]>;
   games;
 

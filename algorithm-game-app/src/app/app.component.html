@@ -1,16 +1,16 @@
 <header>
-  Algorithm Game App
+  {{ title }}
 </header>
-<section>
-  <li *ngFor="let game of games" style="list-style: none">
-    <div>
-      <span>{{ game.detail }}</span>
+<div class="grid grid-pad">
+  <a *ngFor="let game of games" [routerLink]="['/game', game.id]" class="col-1-1">
+    <div class="game detail">
+      <h4>{{ game.detail }}</h4>
     </div>
-    <div>
-      <span>{{ game.image }}</span>
+    <div class="game image">
+      {{ game.image }}
     </div>
-  </li>
-</section>
+  </a>
+</div>
 <footer>
   footer
 </footer>

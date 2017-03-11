@@ -1,8 +1,7 @@
-node_modules/*
 npm-debug.log
 .tscache
 .sublime-grunt-cache
 *.tmp.txt
 *.cache
-typings
-bin
+
+node_modules/

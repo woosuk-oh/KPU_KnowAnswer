@@ -5,5 +5,4 @@ npm-debug.log
 *.tmp.txt
 *.cache
 
-algorithm-game-app/node_modules/*
-algorithm-game-app/src/dist
+algorithm-game-app/node_modules

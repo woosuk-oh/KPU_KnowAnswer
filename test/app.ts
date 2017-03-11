@@ -82,3 +82,5 @@ class Server {
         });
     }
 };
+
+let server = Server.bootstrap();

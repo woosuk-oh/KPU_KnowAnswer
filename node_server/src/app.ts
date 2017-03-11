@@ -102,7 +102,7 @@ class Server {
         let key:string = req.query.keyvalue;
         /*key 값 분리*/
           console.log('RawData -> ' + key);
-          let separatedData:array[] = key.split("K");
+          let separatedData: string[] = key.split("K");
             console.log("----------------------");
             /*
             for(let i in separatedData){
@@ -148,7 +148,7 @@ class Server {
         key 값 분리
         */
           console.log('RawData -> ' + key);
-          let separatedData:array[] = key.split("K");
+          let separatedData: string[] = key.split("K");
             console.log("----------------------");
             /*
           for(let i in separatedData){

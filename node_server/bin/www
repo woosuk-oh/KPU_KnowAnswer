@@ -1,0 +1,96 @@
+#!/usr/bin/env node
+
+"use strict";
+
+//module dependencies.
+var app = require("../app");
+var debug = require("debug")("express:server");
+var http = require("http");
+var firebase = require("firebase");
+
+//get port from environment and store in Express.
+var port = normalizePort(process.env.PORT || 8888);
+app.set("port", port);
+
+
+//create http server
+var server = http.createServer(app);
+
+//listen on provided ports
+server.listen(port);
+
+//add error handler
+server.on("error", onError);
+
+//start listening on port
+server.on("listening", onListening);
+
+// Initialize the app with no authentication
+firebase.initializeApp({
+    databaseURL: "https://m2mproject-d7ae6.firebaseio.com/"
+});
+
+// The app only has access to public data as defined in the Security Rules
+var db = firebase.database();
+var ref = db.ref("/");
+console.log("------------firebase data list------------");
+ref.once("value", function(snapshot) {
+    console.log(snapshot.val());
+});
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+function normalizePort(val) {
+    var port = parseInt(val, 10);
+
+    if (isNaN(port)) {
+        // named pipe
+        return val;
+    }
+
+    if (port >= 0) {
+        // port number
+        return port;
+    }
+
+    return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+function onError(error) {
+    if (error.syscall !== "listen") {
+        throw error;
+    }
+
+    var bind = typeof port === "string" ?
+        "Pipe " + port :
+        "Port " + port;
+
+    // handle specific listen errors with friendly messages
+    switch (error.code) {
+        case "EACCES":
+            console.error(bind + " requires elevated privileges");
+            process.exit(1);
+            break;
+        case "EADDRINUSE":
+            console.error(bind + " is already in use");
+            process.exit(1);
+            break;
+        default:
+            throw error;
+    }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+function onListening() {
+    var addr = server.address();
+    var bind = typeof addr === "string" ?
+        "pipe " + addr :
+        "port " + addr.port;
+    debug("Listening on " + bind);
+}

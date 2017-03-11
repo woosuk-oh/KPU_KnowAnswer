@@ -6,10 +6,10 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { Game } from './game';
 
 const Games: Game[] = [
-  { id: 1, detail: "첫 번째 게임 설명", imageUrl: "첫 번째 사진 주소" },
-  { id: 2, detail: "두 번째 게임 설명", imageUrl: "두 번째 사진 주소" },
-  { id: 3, detail: "세 번째 게임 설명", imageUrl: "세 번째 사진 주소" },
-  { id: 4, detail: "네 번째 게임 설명", imageUrl: "네 번째 사진 주소" }
+  { id: 1, detail: "첫 번째 게임 설명", imageUrl: "../assets/images/1.png" },
+  { id: 2, detail: "두 번째 게임 설명", imageUrl: "../assets/images/2.png" },
+  { id: 3, detail: "세 번째 게임 설명", imageUrl: "../assets/images/3.png" },
+  { id: 4, detail: "네 번째 게임 설명", imageUrl: "../assets/images/4.png" }
 ];
 
 @Component({

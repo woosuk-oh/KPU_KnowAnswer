@@ -1,5 +1,7 @@
 <header>
-    {{ title }}
+    <div class="title_image">
+        <img src="../assets/images/title_m2.png" />
+    </div>
 </header>
 <div class="grid grid-pad">
     <a *ngFor="let game of games" [routerLink]="['/game', game.id]" class="col-mid-12">

@@ -7,3 +7,4 @@ npm-debug.log
 # 노드 모듈 
 algorithm-game-app/node_modules/
 node_server/node_modules/
+test/node_modules/

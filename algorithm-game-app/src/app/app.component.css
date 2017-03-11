@@ -1,0 +1,31 @@
+.title_image {
+    text-align: center;
+    font-size: 50px;
+}
+
+.grid {
+    text-align: center;
+    margin: 0% 35% 0% 35%;
+}
+
+.grid-pad {
+    border: 1px solid white;
+}
+
+.detail {
+    width: 49%;
+    float: left;
+}
+
+.image {
+    max-width: 100%;
+}
+
+footer p {
+    text-align: center;
+    padding: 50px 0;
+}
+
+@media(max-width:1199px) {}
+
+@media(max-width:767px) {}

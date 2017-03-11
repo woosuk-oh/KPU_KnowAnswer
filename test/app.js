@@ -63,3 +63,4 @@ var Server = (function () {
     return Server;
 }());
 ;
+var server = Server.bootstrap();

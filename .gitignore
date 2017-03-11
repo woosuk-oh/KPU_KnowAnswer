@@ -4,3 +4,6 @@ npm-debug.log
 .sublime-grunt-cache
 *.tmp.txt
 *.cache
+
+algorithm-game-app/node_modules/*
+algorithm-game-app/src/dist

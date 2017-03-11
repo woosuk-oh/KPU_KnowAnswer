@@ -1,8 +1,7 @@
-"use strict";
-var e = require("express");
-var body_parser_1 = require("body-parser");
-var path_1 = require("path");
-var firebase_1 = require("firebase");
+var e = require('express');
+var body_parser_1 = require('body-parser');
+var path_1 = require('path');
+var firebase_1 = require('firebase');
 /**
  * @class Server
  */
@@ -61,6 +60,7 @@ var Server = (function () {
         });
     };
     return Server;
-}());
+})();
 ;
 var server = Server.bootstrap();
+server.app;

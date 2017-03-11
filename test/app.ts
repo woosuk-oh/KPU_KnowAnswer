@@ -84,3 +84,4 @@ class Server {
 };
 
 let server = Server.bootstrap();
+server.app;

@@ -5,17 +5,19 @@ import { RouterModule, Routes } from '@angular/router';
  * TODO:: import Component to route
  * import { ... } from '(component path)';
  */
+import { GameComponent } from './game/game.component';
 
+/**
+ * TODO:: Add routes
+ * { path: '(routing-path)', componenet: (Component) }
+ */
 const routes: Routes = [
-  /**
-   * TODO:: Add routes
-   * { path: '(routing-path)', componenet: (Component) }
-   */
+  { path: 'game/:id', component: GameComponent }
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }
 

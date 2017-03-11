@@ -1,17 +1,17 @@
 <header>
-  {{ title }}
+    {{ title }}
 </header>
 <div class="grid grid-pad">
-  <a *ngFor="let game of games" [routerLink]="['/game', game.id]" class="col-1-1">
-    <div class="game detail">
-      <h4>{{ game.detail }}</h4>
-    </div>
-    <div class="game image">
-      {{ game.image }}
-      <img src="../assets/images/1.png" />
-    </div>
-  </a>
+    <a *ngFor="let game of games" [routerLink]="['/game', game.id]" class="col-mid-12">
+        <div class="game detail">
+            <h4>{{ game.detail }}</h4>
+        </div>
+        <div class="game image">
+            {{ game.image }}
+            <img src="../assets/images/1.png" />
+        </div>
+    </a>
 </div>
 <footer>
-  footer
+    footer
 </footer>

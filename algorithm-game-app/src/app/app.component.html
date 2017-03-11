@@ -3,8 +3,8 @@
         <img src="../assets/images/title_m2.png" />
     </div>
 </header>
-<div *ngIf="!selectedGame" class="grid grid-pad">
-    <a *ngFor="let game of games" [routerLink]="['/game', game.id]" routerLinkActive="active" class="col-mid-12" (click)="onSelect(game)">
+<div *ngIf="selectedGame == null" class="grid grid-pad">
+    <a *ngFor="let game of games" [routerLink]="['/game', game.id]" class="col-mid-12" (click)="onSelect(game)">
         <div class="game detail">
             <h4>{{ game.detail }}</h4>
         </div>

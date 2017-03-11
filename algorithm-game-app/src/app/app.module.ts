@@ -9,10 +9,12 @@ import { firebaseConfig } from '../environments/firebase-config';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { GamesComponent } from './games/games.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GamesComponent
   ],
   imports: [
     BrowserModule,

@@ -2,8 +2,10 @@ import * as e from 'express';
 
 import { json, urlencoded } from 'body-parser';
 import { join } from 'path';
+import { createServer } from 'http';
 
-import { database } from 'firebase';
+import { database, initializeApp } from 'firebase';
+
 
 /**
  * @class Server
@@ -83,4 +85,64 @@ class Server {
     }
 };
 
-let server = Server.bootstrap();
+let app = Server.bootstrap().app;
+
+let port = normalizePort(process.env.PORT || 8888);
+app.set("port", port);
+
+let server = createServer(app);
+server.listen(port);
+
+server.on("error", onError);
+server.on("listening", onListening);
+initializeApp({
+    databaseURL: "https://m2mproject-d7ae6.firebaseio.com/"
+});
+
+let db = database();
+let ref = db.ref("/");
+console.log("-------- firebase data list --------");
+ref.once("value", (snapshot: database.DataSnapshot) => {
+    console.log(snapshot.val());
+});
+
+function normalizePort(value: string) {
+    let port = parseInt(value, 10);
+
+    if (isNaN(port)) {
+        return value;
+    }
+
+    if (port >= 0) {
+        return port;
+    }
+
+    return false;
+}
+
+function onError(error: NodeJS.ErrnoException) {
+    if (error.syscall !== "listen") {
+        throw error;
+    }
+
+    let bind = typeof port === "string" ? `Pipe ${port}` : `Port ${port}`;
+
+    switch (error.code) {
+        case "EACCES":
+            console.error(`${bind} requires elevated privileges`);
+            process.exit(1);
+            break;
+        case "EADDRINUSE":
+            console.error(`${bind} is already in use`);
+            process.exit(1);
+            break;
+        default:
+            throw error;
+    }
+}
+
+function onListening() {
+    let addr = server.address();
+    let bind = typeof addr === "string" ? `pipe ${addr}` : `port ${addr.port}`;
+    console.log(`Listening on ${bind}`);
+}

@@ -2,6 +2,7 @@
 var e = require("express");
 var body_parser_1 = require("body-parser");
 var path_1 = require("path");
+var http_1 = require("http");
 var firebase_1 = require("firebase");
 /**
  * @class Server
@@ -63,4 +64,46 @@ var Server = (function () {
     return Server;
 }());
 ;
-var server = Server.bootstrap();
+var app = Server.bootstrap().app;
+var port = normalizePort(process.env.PORT || 8888);
+app.set("port", port);
+var server = http_1.createServer(app);
+server.listen(port);
+server.on("error", onError);
+server.on("listening", onListening);
+firebase_1.initializeApp({
+    databaseURL: "https://m2mproject-d7ae6.firebaseio.com/"
+});
+function normalizePort(value) {
+    var port = parseInt(value, 10);
+    if (isNaN(port)) {
+        return value;
+    }
+    if (port >= 0) {
+        return port;
+    }
+    return false;
+}
+function onError(error) {
+    if (error.syscall !== "listen") {
+        throw error;
+    }
+    var bind = typeof port === "string" ? "Pipe " + port : "Port " + port;
+    switch (error.code) {
+        case "EACCES":
+            console.error(bind + " requires elevated privileges");
+            process.exit(1);
+            break;
+        case "EADDRINUSE":
+            console.error(bind + " is already in use");
+            process.exit(1);
+            break;
+        default:
+            throw error;
+    }
+}
+function onListening() {
+    var addr = server.address();
+    var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
+    console.log("Listening on " + bind);
+}

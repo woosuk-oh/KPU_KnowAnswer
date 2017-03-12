@@ -3,7 +3,8 @@
         <img src="../assets/images/title_m2.png" />
     </div>
 </header>
-<div *ngIf="selectedGame == null" class="grid grid-pad">
+<!--
+<div *ngIf="!isGameRunning" class="grid grid-pad">
     <a *ngFor="let game of games" [routerLink]="['/game', game.id]" class="col-mid-12" (click)="onSelect(game)">
         <div class="game detail">
             <h4>{{ game.detail }}</h4>
@@ -14,6 +15,11 @@
     </a>
 </div>
 <router-outlet></router-outlet>
+-->
+<app-game1 class="center game"></app-game1>
+<app-game2 class="center game"></app-game2>
+<app-game3 class="center game"></app-game3>
+<app-game4 class="center game"></app-game4>
 <footer>
     <p>
         2017 © KNOW ANSWER

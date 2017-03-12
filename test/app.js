@@ -10,6 +10,8 @@ var firebase_1 = require("firebase");
 var Server = (function () {
     function Server() {
         this.app = e();
+        this.config();
+        this.routes();
     }
     /**
      * @method bootstrap
@@ -73,6 +75,12 @@ server.on("error", onError);
 server.on("listening", onListening);
 firebase_1.initializeApp({
     databaseURL: "https://m2mproject-d7ae6.firebaseio.com/"
+});
+var db = firebase_1.database();
+var ref = db.ref("/");
+console.log("-------- firebase data list --------");
+ref.once("value", function (snapshot) {
+    console.log(snapshot.val());
 });
 function normalizePort(value) {
     var port = parseInt(value, 10);

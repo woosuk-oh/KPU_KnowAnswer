@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 import { Game } from './game';
-import { GAMES } from './game.data';
 
 @Component({
   selector: 'app-root',
@@ -15,17 +14,17 @@ export class AppComponent implements OnInit {
 
   title = "알고리즘 게임을 해볼까?";
   items: FirebaseListObservable<any[]>;
-
+  isGameRunning: boolean;
   selectedGame: Game;
   games: Game[];
 
   constructor(private af: AngularFire, private router: Router) {
     this.items = af.database.list('/server/member/mory/keyvalue/separatedKeys');
+    this.isGameRunning = false;
   }
 
   ngOnInit(): void {
-    this.games = GAMES;
-    this.selectedGame = null;
+    this.isGameRunning = false;
   }
 
   onSelect(game: Game): void {
@@ -34,6 +33,7 @@ export class AppComponent implements OnInit {
   }
 
   private playGame(): void {
+    this.isGameRunning = true;
     let id = this.selectedGame.id;
     this.router.navigate(['game', id]);
   }

@@ -16,6 +16,8 @@ class Server {
 
     constructor() {
         this.app = e();
+        this.config();
+        this.routes();
     }
 
     /**

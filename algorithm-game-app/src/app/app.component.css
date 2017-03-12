@@ -3,13 +3,13 @@
     font-size: 50px;
 }
 
-.contents {
-    border: 1px solid #fffcdf;
-}
-
 .grid {
     text-align: center;
-    margin: 0% 30% 0% 30%;
+    margin: 0% 35% 0% 35%;
+}
+
+.grid-pad {
+    border: 1px solid white;
 }
 
 .detail {
@@ -18,12 +18,10 @@
 }
 
 .image {
-    float: right;
     max-width: 100%;
 }
 
 footer p {
-    clear: both;
     text-align: center;
     padding: 50px 0;
 }

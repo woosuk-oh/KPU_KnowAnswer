@@ -18,9 +18,12 @@ export class AppComponent implements OnInit {
   selectedGame: Game;
   games: Game[];
 
+  showList: boolean;
+
   constructor(private af: AngularFire, private router: Router) {
     this.items = af.database.list('/server/member/mory/keyvalue/separatedKeys');
     this.isGameRunning = false;
+    this.showList = false;
   }
 
   ngOnInit(): void {
@@ -30,6 +33,10 @@ export class AppComponent implements OnInit {
   onSelect(game: Game): void {
     this.selectedGame = game;
     this.playGame();
+  }
+
+  showData(): void {
+    this.showList = !this.showList;
   }
 
   private playGame(): void {

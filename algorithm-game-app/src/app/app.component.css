@@ -32,6 +32,10 @@ a:hover {text-decoration: underline; color: #333333;}
     float: right;
 }
 
+.center {
+    text-align: center;
+}
+
 footer .copyright {
     color: #fffcdf;
     clear: both;

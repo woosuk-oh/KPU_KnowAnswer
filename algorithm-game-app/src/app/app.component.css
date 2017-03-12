@@ -3,29 +3,38 @@
     font-size: 50px;
 }
 
-.grid {
-    text-align: center;
-    margin: 0% 35% 0% 35%;
+.contents {
+    width: 50%;
+    border: 1px solid #fffcdf;
+    display: block;
 }
 
-.grid-pad {
-    border: 1px solid white;
+a:link {text-decoration: none; color: #333333;}
+a:visited {text-decoration: none; color: #333333;}
+a:active {text-decoration: none; color: #333333;}
+a:hover {text-decoration: underline; color: #333333;}
+
+.grid {
+    width: 50%;
+    text-align: center;
+    margin-left: 30%;
+    margin-right: 30%;
 }
 
 .detail {
-    width: 49%;
+    margin-top: 30px;
+    width: 50%;
+    clear: both;
     float: left;
 }
 
 .image {
-    max-width: 100%;
+    float: right;
 }
 
-footer p {
+footer .copyright {
+    color: #fffcdf;
+    clear: both;
     text-align: center;
     padding: 50px 0;
 }
-
-@media(max-width:1199px) {}
-
-@media(max-width:767px) {}

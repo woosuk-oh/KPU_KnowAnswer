@@ -5,17 +5,19 @@
 </header>
 <div *ngIf="selectedGame == null" class="grid grid-pad">
     <a *ngFor="let game of games" [routerLink]="['/game', game.id]" class="col-mid-12" (click)="onSelect(game)">
+      <div class="game contents">
         <div class="game detail">
             <h4>{{ game.detail }}</h4>
         </div>
         <div class="game image">
-            <img src=" {{game.imageUrl}}" />
+            <img src="{{game.imageUrl}}" />
         </div>
+      </div>
     </a>
 </div>
 <router-outlet></router-outlet>
 <footer>
-    <p>
+    <p class="copyright">
         2017 © KNOW ANSWER
     </p>
 </footer>

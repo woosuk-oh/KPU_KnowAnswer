@@ -15,6 +15,9 @@ import { Game2Component } from './game2/game2.component';
 import { Game3Component } from './game3/game3.component';
 import { Game4Component } from './game4/game4.component';
 
+import { LoaderService } from './loader.service';
+import { KeyboardService } from './keyboard.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +33,7 @@ import { Game4Component } from './game4/game4.component';
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig)
   ],
-  providers: [  ],
+  providers: [ LoaderService, KeyboardService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

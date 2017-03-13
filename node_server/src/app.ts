@@ -1,4 +1,3 @@
-/// <reference path="_all.d.ts" />
 "use strict";
 
 import * as bodyParser from "body-parser";
@@ -220,3 +219,4 @@ class Server {
 }
 
 let server = Server.bootstrap();
+export = server.app;

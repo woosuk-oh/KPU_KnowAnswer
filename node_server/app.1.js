@@ -189,4 +189,3 @@ var Server = (function () {
     return Server;
 })();
 var server = Server.bootstrap();
-module.exports = server.app;

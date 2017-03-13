@@ -388,7 +388,6 @@ export class Game1Component implements OnInit {
       });
       console.log(this.results);
     });
-        
   }
 
   ngOnInit(): void {

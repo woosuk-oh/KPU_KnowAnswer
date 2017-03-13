@@ -4,14 +4,16 @@
 
 
 <div>
-  <h1 *ngFor="let item of items | async">
-    <p *ngIf="item.$value === FWRD">앞으로</p>
-    <p *ngIf="item.$value === BWRD">뒤로</p>
-    <p *ngIf="item.$value === TUNR">오른쪽회전</p>
-    <p *ngIf="item.$value === TUNL">왼쪽회전</p>
+  <h1 *ngFor="let result of results">
+    <p *ngIf="result === FORWARD">앞으로</p>
+    <p *ngIf="result === BACKWARD">뒤로</p>
+    <p *ngIf="result === TURNRIGHT">우회전</p>
+    <p *ngIf="result === TURNLEFT">좌회전</p>
   </h1>
 </div>
 
+<!--
 <div class="main-wrapper">
   <canvas id="demo" width="512" height="512"></canvas>
 </div>
+-->

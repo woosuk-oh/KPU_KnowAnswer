@@ -5,6 +5,10 @@ import { Game1 } from '../game.data';
 
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
+import { } from 'rxjs';
+
+/*
+
 import { LoaderService } from '../loader.service';
 import { KeyboardService } from '../keyboard.service';
 
@@ -349,50 +353,46 @@ class Miro {
   }
 
 }
+
+*/
+
+
 @Component({
   selector: 'app-game1',
   templateUrl: './game1.component.html',
   styleUrls: ['./game1.component.css'],
-  providers: [LoaderService, KeyboardService]
+//  providers: [LoaderService, KeyboardService]
 })
 export class Game1Component implements OnInit {
 
   game: Game;
   items: FirebaseListObservable<any>;
+  results: Array<string> = [];
+
+  FORWARD = "FWRD";
+  BACKWARD = "BWRD";
+  TURNRIGHT = "TUNR";
+  TURNLEFT = "TUNL";
 
   constructor(
     private af: AngularFire,
-    private miro: Miro
+//    private miro: Miro
   ) {
-    this.items = af.database.list('/server/member/mory/keyvalue/separatedKeys');
+    this.items = af.database.list('/server/member/mory/keyvalue/separatedKeys', { preserveSnapshot: true });
 
-    this.items.forEach((value) => {
-      console.log(value);
+    this.items.subscribe((snapshots) => {
+      this.results = [];
+      snapshots.forEach((snapshot) => {
+        console.log(snapshot.key, snapshot.val());
+        this.results.push(snapshot.val());
+      });
+      console.log(this.results);
     });
-
-    for (var item in this.items) {
-      if (this.items.hasOwnProperty(item)) {
-        var element = this.items[item];
-        console.log(element);
-      }
-    }
-
-    this.miro = new Miro(
-      new LoaderService,
-      new KeyboardService,
-      new Player(
-        new Map(),
-        0,
-        0
-      )
-    )
+        
   }
 
   ngOnInit(): void {
     this.game = Game1;
-    let demo: NodeListOf<HTMLCanvasElement> = document.getElementsByTagName('canvas');
-    let context = demo[0].getContext('2d');
-    this.miro.run(context);
   }
 
   onChange(): void {

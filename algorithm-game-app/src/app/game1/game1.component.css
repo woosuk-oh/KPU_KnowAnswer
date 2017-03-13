@@ -1,8 +1,10 @@
 
-
+.game{
+  border: 2px solid #fffcdf;
+}
 
 .window{
-     border: 1px solid firebrick;
+     border: 2px solid #fffcdf;
      width: 20%;
      height: 512px;
      margin: 0px auto;
@@ -11,7 +13,7 @@
 }
 
 .image{
-    border: 1px solid darkblue;
+    border: 2px solid #fffcdf;
     float: left;
     width: 512px;
     height: 512px;
@@ -23,7 +25,7 @@
     clear: both;
     width: 512px;
     height: auto;
-    border: 1px solid yellow;
+    border: 2px solid #fffcdf;
     padding: 10px;
     float:left;
 }
@@ -33,5 +35,5 @@
     width: 20%;
     padding:10px;
     margin: 0px auto;
-     border: 1px solid black;
+     border: 2px solid #fffcdf;
 }

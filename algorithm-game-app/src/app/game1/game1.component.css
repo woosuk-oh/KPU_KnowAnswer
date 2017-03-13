@@ -10,6 +10,7 @@ canvas {
 a, a:hover, a:visited {
     color: #000;
     text-decoration: none;
+    cursor: pointer;
 }
 
 a {

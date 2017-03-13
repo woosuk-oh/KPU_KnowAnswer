@@ -5,8 +5,6 @@ import { Game1 } from '../game.data';
 
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
-import { } from 'rxjs';
-
 /*
 
 import { LoaderService } from '../loader.service';
@@ -374,6 +372,8 @@ export class Game1Component implements OnInit {
   TURNRIGHT = "TUNR";
   TURNLEFT = "TUNL";
 
+  isTutorialFinished: boolean;
+
   constructor(
     private af: AngularFire,
 //    private miro: Miro
@@ -386,16 +386,20 @@ export class Game1Component implements OnInit {
         console.log(snapshot.key, snapshot.val());
         this.results.push(snapshot.val());
       });
-      console.log(this.results);
+      if (this.results.toString() == "mory,FWRD,0,0,0,0,0,0,0,0,0") {
+        this.isTutorialFinished = true;
+      }
+      console.log(this.results.toString());
     });
   }
 
   ngOnInit(): void {
     this.game = Game1;
+    this.isTutorialFinished = false;
   }
 
-  onChange(): void {
-    console.log("디비 내용 변함!!");
+  start(): void {
+    alert("게임 시작!!");
   }
 
 }

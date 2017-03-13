@@ -18,17 +18,13 @@
 </div>
 <router-outlet></router-outlet>
 -->
-<button style="margin-left: 40%;" (click)="showData()">Show DATABASE</button>
-<div *ngIf="showList" class="center">
-  <li *ngFor="let item of items | async">
-    {{ item.$value }}
-  </li>
-</div>
 
 <app-game1 class="center game"></app-game1>
+<!--
 <app-game2 class="center game"></app-game2>
 <app-game3 class="center game"></app-game3>
 <app-game4 class="center game"></app-game4>
+-->
 <footer>
     <p class="copyright">
         2017 © KNOW ANSWER

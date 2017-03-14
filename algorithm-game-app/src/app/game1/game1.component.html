@@ -3,9 +3,10 @@
   클릭 시 게임 시작
   -->
 <div class="center game image">
-  <a (click)="start()">
+  <a *ngIf="!isStarted" (click)="start()">
     <img src="{{ game.imageUrl }}"/>
   </a>
+  <app-game-canvas *ngIf="isStarted"></app-game-canvas>
 </div>
 
 <!--

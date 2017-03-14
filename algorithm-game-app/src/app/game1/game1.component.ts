@@ -373,6 +373,7 @@ export class Game1Component implements OnInit {
   TURNLEFT = "TUNL";
 
   isTutorialFinished: boolean;
+  isStarted: boolean;
 
   constructor(
     private af: AngularFire,
@@ -396,10 +397,12 @@ export class Game1Component implements OnInit {
   ngOnInit(): void {
     this.game = Game1;
     this.isTutorialFinished = false;
+    this.isStarted = false;
   }
 
   start(): void {
     alert("게임 시작!!");
+    this.isStarted = true;
   }
 
 }

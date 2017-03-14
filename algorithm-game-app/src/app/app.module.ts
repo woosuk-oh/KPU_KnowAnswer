@@ -17,6 +17,7 @@ import { Game4Component } from './game4/game4.component';
 
 import { LoaderService } from './loader.service';
 import { KeyboardService } from './keyboard.service';
+import { GameCanvasComponent } from './game-canvas/game-canvas.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { KeyboardService } from './keyboard.service';
     Game1Component,
     Game2Component,
     Game3Component,
-    Game4Component
+    Game4Component,
+    GameCanvasComponent
   ],
   imports: [
     BrowserModule,

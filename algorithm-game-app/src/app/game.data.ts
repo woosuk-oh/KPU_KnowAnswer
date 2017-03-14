@@ -3,7 +3,7 @@ import { Game } from './game';
 export let Game1: Game = {
   id: 1,
   detail: "첫 번째 게임 설명짜르르르르르르르르ㄹ르르르르르르르르ㅡㄹ첫 번째 게임 설명짜르르르르르르르르ㄹ르르르르르르르르ㅡㄹ",
-  imageUrl: "../assets/images/miro.png"
+  imageUrl: "../assets/images/1.png"
 };
 
 export let Game2: Game = {

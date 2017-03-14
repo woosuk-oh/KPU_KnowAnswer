@@ -3,7 +3,7 @@
   클릭 시 게임 시작
   -->
 <div class="center game image">
-  <a *ngIf="!isStarted" (click)="start()">
+  <a *ngIf="!isStarted">
     <img src="{{ game.imageUrl }}" style="padding-top: 64px" />
   </a>
   <img *ngIf="!isTutorialOneFinished && isStarted" src="../../assets/images/tutorial_1.png" width="512" height="auto" style="padding-top: 64px"/>
@@ -14,17 +14,28 @@
 </div>
 
 <!-- TODO: 이 이미지 1,7에 위치시켜 주세염 -->
-<img #gamePlayer src="../../assets/images/player.png" style="z-index: 50;" alt="플레이어" width="64px" height="64px" />
+<div 
+*ngIf="isTutorialThreeFinished" style="position: absolute; width: 580px; height: 530px; padding-top: 466px">
+  <img #gamePlayer src="../../assets/images/player.png" style="z-index: 50;" width="64px" height="64px"/>
+</div>
 
 <!--
   블록 상태를 보여주는 레이아웃 (우측)
   -->
 <div class="game window">
   <h1 *ngFor="let result of results">
-    <p *ngIf="result === FORWARD">앞으로</p>
-    <p *ngIf="result === BACKWARD">뒤로</p>
-    <p *ngIf="result === TURNRIGHT">우회전</p>
-    <p *ngIf="result === TURNLEFT">좌회전</p>
+    <p *ngIf="result === FORWARD">
+      <img src="../../assets/images/fw.png" width="75px" height="auto"/>
+    </p>
+    <p *ngIf="result === BACKWARD">
+      <img src="../../assets/images/bw.png" width="75px" height="auto"/>
+    </p>
+    <p *ngIf="result === TURNRIGHT">
+      <img src="../../assets/images/rr.png" width="75px" height="auto"/>
+    </p>
+    <p *ngIf="result === TURNLEFT">
+      <img src="../../assets/images/rl.png" width="75px" height="auto"/>
+    </p>
   </h1>
 </div>
 
@@ -32,15 +43,23 @@
   게임의 진행 상황을 출력해주는 레이아웃 (좌측 하단)
   -->
 <div class="game status">
-  <p *ngIf="!isTutorialFinished">
-    앞으로 가는 블록을 하나만 연결해주세요. 최적해상도 800 400 )
+  <p *ngIf="!isTutorialOneFinished && isStarted">
+    앞으로 가는 블록을 하나만 연결해주세요.
   </p>
-  <p *ngIf="isTutorialFinished">
-    잘했어요!
+  <p *ngIf="!isTutorialTwoFinished && isTutorialOneFinished">
+    오른쪽 회전 블록을 추가로 연결해주세요.
+  </p>
+  <p *ngIf="!isTutorialThreeFinished && isTutorialTwoFinished">
+    뒤로 가는 블록을 추가로 연결해주세요. 순서만 맞으면 중간에 빈 블록 칸이 존재해도 진행됩니다.
+  </p>
+  <p *ngIf="isTutorialThreeFinished">
+    잘했어요! 튜토리얼이 끝났어요!
+    미로찾기 게임을 시작해 볼까요?
   </p>
 </div>
 
 <div class="game button">
+  <button class="btn" (click)="start()">시작하기</button>
+  <button class="btn" (click)="skipTutorial()">튜토리얼 스킵</button>
   <input type="button" value="처음으로">
-
 </div>

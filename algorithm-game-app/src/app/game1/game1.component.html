@@ -4,10 +4,17 @@
   -->
 <div class="center game image">
   <a *ngIf="!isStarted" (click)="start()">
-    <img src="{{ game.imageUrl }}"/>
+    <img src="{{ game.imageUrl }}" style="padding-top: 64px" />
   </a>
-  <app-game-canvas *ngIf="isStarted"></app-game-canvas>
+  <img *ngIf="!isTutorialOneFinished && isStarted" src="../../assets/images/tutorial_1.png" width="512" height="auto" style="padding-top: 64px"/>
+  <img *ngIf="!isTutorialTwoFinished && isTutorialOneFinished" src="../../assets/images/tutorial_2.png" width="512" height="auto" style="padding-top: 64px"/>
+  <img *ngIf="!isTutorialThreeFinished && isTutorialTwoFinished" src="../../assets/images/tutorial_3.png" width="512" height="auto" style="padding-top: 64px"/>
+
+  <app-game-canvas *ngIf="isTutorialThreeFinished"></app-game-canvas>
 </div>
+
+<!-- TODO: 이 이미지 1,7에 위치시켜 주세염 -->
+<img #gamePlayer src="../../assets/images/player.png" style="z-index: 50;" alt="플레이어" width="64px" height="64px" />
 
 <!--
   블록 상태를 보여주는 레이아웃 (우측)
@@ -26,7 +33,7 @@
   -->
 <div class="game status">
   <p *ngIf="!isTutorialFinished">
-    앞으로 가는 블록을 하나만 연결해주세요.  최적해상도 800 400 )
+    앞으로 가는 블록을 하나만 연결해주세요. 최적해상도 800 400 )
   </p>
   <p *ngIf="isTutorialFinished">
     잘했어요!
@@ -34,6 +41,6 @@
 </div>
 
 <div class="game button">
-    <input type="button" value="처음으로">
+  <input type="button" value="처음으로">
 
-  </div>
+</div>

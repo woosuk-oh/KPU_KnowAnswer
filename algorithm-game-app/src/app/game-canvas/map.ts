@@ -4,24 +4,26 @@ export const map = {
     rows: 8,
     tsize: 64,
     layers: [[
-        3, 3, 3, 3, 3, 3, 3, 3,
-        3, 1, 1, 1, 2, 1, 1, 3,
-        3, 1, 1, 1, 2, 1, 1, 3,
-        3, 1, 1, 1, 2, 1, 1, 3,
-        3, 1, 1, 1, 2, 1, 1, 3,
-        3, 1, 1, 1, 2, 2, 2, 3,
-        3, 2, 2, 2, 2, 1, 1, 3,
-        3, 2, 1, 1, 1, 1, 1, 3
+        5, 5, 5, 5, 5, 5, 5, 5,
+        5, 9, 9, 9, 9, 9, 9, 5,
+        5, 9, 2, 5, 5, 2, 9, 5,
+        5, 9, 5, 3, 5, 5, 9, 5,
+        5, 9, 5, 9, 9, 9, 9, 5,
+        5, 9, 2, 5, 5, 5, 9, 5,
+        5, 9, 9, 9, 9, 9, 9, 5,
+        5, 9, 5, 5, 5, 5, 5, 5
     ], [
-        4, 3, 3, 3, 3, 3, 3, 4,
-        4, 0, 0, 0, 0, 0, 0, 4,
-        4, 0, 0, 0, 0, 0, 0, 4,
-        4, 5, 5, 5, 0, 5, 0, 4,
-        4, 5, 5, 5, 0, 0, 0, 4,
-        4, 5, 5, 5, 0, 0, 0, 4,
-        4, 0, 0, 0, 0, 0, 0, 4,
-        4, 0, 4, 4, 4, 4, 4, 4,
-    ]],
+        // start at [1][7]
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0 ,0, 0, 0, 0, 0,
+        0, 0, 0 ,0, 0, 0, 0, 0,
+        0, 0, 0 ,0, 0, 0, 0, 0,
+        0, 0, 0 ,0, 0, 0, 0, 0,
+        0, 0, 0 ,0, 0, 0, 0, 0,
+        0, 0, 0 ,0, 0, 0, 0, 0,
+        0, 3, 0 ,0, 0, 0, 0, 0
+    ]], 
+    
     getTile: function (layer: number, col: number, row: number) {
         return map.layers[layer][row * map.cols + col];
     },
@@ -33,7 +35,7 @@ export const map = {
         // loop through all layers and return TRUE if any tile is solid
         return this.layers.reduce(function (res, layer, index) {
             var tile = this.getTile(index, col, row);
-            var isSolid = tile === 3 || tile === 5;
+            var isSolid = tile === 4
             return res || isSolid;
         }.bind(this), false);
     },

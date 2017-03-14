@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, Input, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, Input, OnInit, AfterViewInit } from '@angular/core';
 
 import { map } from './map';
 
@@ -7,9 +7,15 @@ import { map } from './map';
   templateUrl: './game-canvas.component.html',
   styleUrls: ['./game-canvas.component.css']
 })
-export class GameCanvasComponent implements AfterViewInit {
+export class GameCanvasComponent implements OnInit, AfterViewInit {
 
   private size: number;
+
+  private tileAtlas: HTMLImageElement;
+  private player: HTMLImageElement;
+
+  playerX: number = 1;
+  playerY: number = 7;
 
   @ViewChild("gameCanvas")
   gameCanvas: ElementRef;
@@ -18,18 +24,25 @@ export class GameCanvasComponent implements AfterViewInit {
     this.size = 512;
   }
 
+  ngOnInit() {
+    this.tileAtlas = new Image();
+    this.tileAtlas.src = "../../assets/images/tiles.png";
+    
+    this.player = new Image();
+    this.player.src = "../../assets/images/player.png";
+  }
+
   ngAfterViewInit() {
     let ctx: CanvasRenderingContext2D = this.gameCanvas.nativeElement.getContext("2d");
     
-    let tileAtlas = new Image();
-    tileAtlas.src = "../../assets/images/tiles.png";
-    tileAtlas.onload = function() {
+    let background = this.tileAtlas;
+    background.onload = function() {
       for (let c = 0; c < map.cols; c++) {
         for (let r = 0; r < map.rows; r++) {
           let tile = map.getTile(0, c, r);
           if (tile != 0) {
             ctx.drawImage(
-              tileAtlas,
+              background,
               (tile - 1) * map.tsize,
               0,
               map.tsize,
@@ -42,30 +55,22 @@ export class GameCanvasComponent implements AfterViewInit {
           }
         }
       }
-      for (let c = 0; c < map.cols; c++) {
-        for (let r = 0; r < map.rows; r++) {
-          let tile = map.getTile(1, c, r);
-          if (tile != 0) {
-            ctx.drawImage(
-              tileAtlas,
-              (tile - 1) * map.tsize,
-              0,
-              map.tsize,
-              map.tsize,
-              c * map.tsize,
-              r * map.tsize,
-              map.tsize,
-              map.tsize
-            )
-          }
-        }
-      }      
     }
-
-    
     /*
-    ctx.fillStyle = 'blue';
-    ctx.fillRect(10, 10, 512, 512);
+    let p = this.player;
+    p.onload = function() {
+      ctx.drawImage(
+        p,
+        (map.getTile(1, 1, 7) - 1) * map.tsize,
+        0,
+        map.tsize,
+        map.tsize,
+        1 * map.tsize,
+        7 * map.tsize,
+        map.tsize,
+        map.tsize
+      )
+    }
     */
   }
 

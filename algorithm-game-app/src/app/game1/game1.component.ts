@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 
 import { Game } from '../game'
 import { Game1 } from '../game.data';
 
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { AngularFire, FirebaseListObservable, FirebaseListFactory } from 'angularfire2';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-game1',
@@ -17,9 +18,20 @@ export class Game1Component implements OnInit {
   items: FirebaseListObservable<any>;
   results: Array<string> = [];
   deg = 0;
-  
+
   x = 0;
   y = 0;
+
+  subCount = 0;
+
+  rt = `rotate(${this.deg}deg)`;
+  tx = `translateX(${this.x}px)`;
+  ty = `translateY(${this.y}px)`;
+
+  style = `${this.rt} ${this.tx} ${this.ty}`;
+
+  @Input()
+  currentStyles: {};
 
   FORWARD = "FWRD";
   BACKWARD = "BWRD";
@@ -31,25 +43,33 @@ export class Game1Component implements OnInit {
   isTutorialThreeFinished: boolean;
   isStarted: boolean;
 
-  @ViewChild("gamePlayer")
-  gamePlayer: ElementRef;
+  stream;
 
   constructor(
     private af: AngularFire,
 //    private miro: Miro
   ) {
-    
+    // this.stream = Observable.interval(1000).take(10);
     this.items = af.database.list('/server/member/mory/keyvalue/separatedKeys', { preserveSnapshot: true });
+  }
 
-    this.items.subscribe((snapshots) => {
+  ngOnInit(): void {
+    this.game = Game1;
+    this.isTutorialOneFinished = false;
+    this.isTutorialTwoFinished = false;
+    this.isTutorialThreeFinished = false;
+    this.isStarted = false;
+
+    // TODO:: 하나의 스트림마다 딜레이를 주어야 함??? 아마도.. 근데 이건 안먹힐 거임
+    this.items.delay(500).subscribe((snapshots) => {
       this.results = [];
       snapshots.forEach((snapshot) => {
         console.log(snapshot.key, snapshot.val());
         this.results.push(snapshot.val());
       });
       let str = this.results.toString();
-      
-      if (!(this.isTutorialThreeFinished)) {
+
+      if (!(this.isTutorialThreeFinished) && (this.isStarted)) {
         // 튜토리얼 1 클리어 체크
         // 앞으로
         if (this.results[1] == "FWRD" && this.results[2] == "0") {
@@ -75,52 +95,42 @@ export class Game1Component implements OnInit {
           }
         }
       } else {
-        
-        console.log(this.gamePlayer.nativeElement);
+        this.subCount++;
         this.results.forEach((value: string, index: number, array: string[]) => {
           switch(value) {
             case "FWRD":
-            // 위로 움직이려면  translateY 더하자
-              // 오른쪽으로 움직이려면  translateX 더하자 단위는 픽셀 
-              console.log("FWRD 정상적으로 움직임!");
-              this.y -= 64;
-              this.gamePlayer.nativeElement.style.transform = `translateY(${this.y}px)`;
+              // 위로 움직이려면  translateY 더하자
+              // 오른쪽으로 움직이려면  translateX 더하자 단위는 픽셀
+              console.log("FWRD 정상적으로 움직임!", this.subCount);
+              this.y -= 64 / (this.subCount);
               break;
 
             case "BWRD":
-              console.log("BWRD 정상적으로 움직임!");     
-              this.y += 64;
-              this.gamePlayer.nativeElement.style.transform = `translateY(${this.y}px)`;
+              console.log("BWRD 정상적으로 움직임!", this.subCount);
+              this.y += 64 / (this.subCount);
               break;
 
             case "TUNR":
-              console.log("TUNR 정상적으로 움직임!");
+              console.log("TUNR 정상적으로 움직임!", this.subCount);
               this.deg += 90;
-              this.gamePlayer.nativeElement.style.transform = `rotate(${this.deg}deg)`;
               break;
 
             case "TUNL":
-              console.log("TUNL 정상적으로 움직임!");
+              console.log("TUNL 정상적으로 움직임!", this.subCount);
               this.deg -= 90;
-              this.gamePlayer.nativeElement.style.transform = `rotate(${this.deg}deg)`;
               break;
           }
 
           setTimeout(function() {
             console.log("1초쯤 쉬어도 괜찮겠지?");
-          }, 1000);
+          }, 1);
+          this.setCurrentStyles();
         })
       }
+      console.log("subCount: ", this.subCount);
       console.log(str);
     });
-  }
-
-  ngOnInit(): void {
-    this.game = Game1;
-    this.isTutorialOneFinished = false;
-    this.isTutorialTwoFinished = false;
-    this.isTutorialThreeFinished = false;
-    this.isStarted = false;
+    this.subCount = 0;
   }
 
   start(): void {
@@ -133,6 +143,15 @@ export class Game1Component implements OnInit {
     this.isTutorialOneFinished = true;
     this.isTutorialTwoFinished = true;
     this.isTutorialThreeFinished = true;
+  }
+
+  setCurrentStyles() {
+    this.currentStyles = {
+      'transform': `
+        rotate(${this.deg}deg) 
+        translateX(${this.x}px)
+        translateY(${this.y}px)`
+    };
   }
 
 }

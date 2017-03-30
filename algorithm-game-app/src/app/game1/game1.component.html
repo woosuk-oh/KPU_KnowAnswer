@@ -6,17 +6,17 @@
   <a *ngIf="!isStarted">
     <img src="{{ game.imageUrl }}" style="padding-top: 64px" />
   </a>
-  <img *ngIf="!isTutorialOneFinished && isStarted" src="../../assets/images/tutorial_1.png" width="512" height="auto" style="padding-top: 64px"/>
-  <img *ngIf="!isTutorialTwoFinished && isTutorialOneFinished" src="../../assets/images/tutorial_2.png" width="512" height="auto" style="padding-top: 64px"/>
-  <img *ngIf="!isTutorialThreeFinished && isTutorialTwoFinished" src="../../assets/images/tutorial_3.png" width="512" height="auto" style="padding-top: 64px"/>
+  <img *ngIf="!isTutorialOneFinished && isStarted" src="../../assets/images/tutorial_1.png" width="512px" height="auto" style="padding-top: 64px"/>
+  <img *ngIf="!isTutorialTwoFinished && isTutorialOneFinished" src="../../assets/images/tutorial_2.png" width="512px" height="auto" style="padding-top: 64px"/>
+  <img *ngIf="!isTutorialThreeFinished && isTutorialTwoFinished" src="../../assets/images/tutorial_3.png" width="512px" height="auto" style="padding-top: 64px"/>
 
   <app-game-canvas *ngIf="isTutorialThreeFinished"></app-game-canvas>
 </div>
 
 <!-- TODO: 이 이미지 1,7에 위치시켜 주세염 -->
-<div 
-*ngIf="isTutorialThreeFinished" style="position: absolute; width: 580px; height: 530px; padding-top: 466px">
-  <img #gamePlayer src="../../assets/images/player.png" style="z-index: 50;" width="64px" height="64px"/>
+<div
+*ngIf="isTutorialThreeFinished" style="position: absolute; width: 580px; height: 530px; padding-top: 466px; left: -4%">
+  <img src="../../assets/images/player.png" [ngStyle]="currentStyles" style="z-index: 50;" width="64px" height="64px"/>
 </div>
 
 <!--
@@ -25,16 +25,16 @@
 <div class="game window">
   <h1 *ngFor="let result of results">
     <p *ngIf="result === FORWARD">
-      <img src="../../assets/images/fw.png" width="75px" height="auto"/>
+      <img src="../../assets/images/fw.png" width="50px" height="auto"/>
     </p>
     <p *ngIf="result === BACKWARD">
-      <img src="../../assets/images/bw.png" width="75px" height="auto"/>
+      <img src="../../assets/images/bw.png" width="50px" height="auto"/>
     </p>
     <p *ngIf="result === TURNRIGHT">
-      <img src="../../assets/images/rr.png" width="75px" height="auto"/>
+      <img src="../../assets/images/rr.png" width="50px" height="auto"/>
     </p>
     <p *ngIf="result === TURNLEFT">
-      <img src="../../assets/images/rl.png" width="75px" height="auto"/>
+      <img src="../../assets/images/rl.png" width="50px" height="auto"/>
     </p>
   </h1>
 </div>
